@@ -1,6 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { Repo, RepoSearchResponse } from '../models/repo.model';
 import {
+  catchError,
   finalize,
   map,
   Observable,
@@ -54,8 +55,14 @@ export class GithubDataService {
         return data.items;
       }),
       tap((data) => this.reposSignal.set(data)),
-      finalize(() => this.repoloadingSignal.set(false))
-    );
+      finalize(() => this.repoloadingSignal.set(false)),
+      catchError((error) => {
+        console.error('Error fetching Repos:', error);
+        this.clearRepos(); 
+        throw error; 
+      })
+    )
+    
     return request$;
   }
 
@@ -65,7 +72,12 @@ export class GithubDataService {
       .get<Commit[]>(`${this.apiUrl}/repos/${repoFullName}/commits`)
       .pipe(
         tap((data) => this.commitsSignal.set(data)),
-        finalize(() => this.loadingSignal.set(false))
+        finalize(() => this.loadingSignal.set(false)),
+        catchError((error) => {
+          console.error('Error fetching commits:', error);
+          throw error; 
+        })
+      
       );
     return request$;
   }
