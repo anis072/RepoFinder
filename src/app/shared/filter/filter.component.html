@@ -1,0 +1,19 @@
+<div class="search-container">
+    <h2>Search Repositories</h2>
+    <div class="search-group">
+      <mat-form-field appearance="fill" class="search-field">
+        <mat-label>Search by name</mat-label>
+        <input matInput [formControl]="searchQuery" placeholder="Search by name" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="search-field">
+        <mat-label>Language</mat-label>
+        <input matInput [formControl]="language" placeholder="Language" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="search-field">
+        <mat-label>Min Stars</mat-label>
+        <input matInput type="number" maxlength="5" [formControl]="minStars" placeholder="Min stars" />
+      </mat-form-field>
+    </div>
+  </div>

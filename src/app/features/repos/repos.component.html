@@ -1,0 +1,19 @@
+<div class="container">
+  <app-filter (searchParams)="onSearchParams($event)"></app-filter>
+
+  @if (isLoading()) {
+    <p>Loading repositories...</p>
+  } @else if (repos().length > 0) {
+    <app-table
+      [dataSource]="repos"
+      [columns]="columns"
+      [totalLength]="totalLength()"
+      [pageSize]="pageSize()"
+      [pageIndex]="pageIndex()"
+      (rowClicked)="handleRowClick($event)"
+      (pageChanged)="onPageChange($event)"
+    ></app-table>
+  } @else {
+    <p>No repositories found.</p>
+  }
+</div>

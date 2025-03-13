@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Commits for {{ repoFullName }}</h2>
+    @if (loading()) {
+      <p>Loading commits...</p>
+    } @else if (commits().length > 0) {
+      <app-table [dataSource]="commits" [columns]="columns" [usePagination]="false"></app-table>
+    } @else {
+      <p>No commits found.</p>
+    }
+  </div>
