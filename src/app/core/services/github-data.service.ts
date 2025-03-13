@@ -84,6 +84,7 @@ export class GithubDataService {
 
   clearRepos() {
     this.totalCountSignal.set(0);
+    this.reposSignal.set([])
   }
 
   setPage(page: number) {

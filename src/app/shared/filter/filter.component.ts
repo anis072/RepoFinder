@@ -1,4 +1,4 @@
-import { Component, effect, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, output } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { controlToSignal } from '../../core/utils/helpers';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,8 @@ interface SearchParams {
   ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class FilterComponent {
   searchQuery = new FormControl<string>('');

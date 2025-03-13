@@ -1,4 +1,4 @@
-import { Component, computed, input, OnInit, output, signal, Signal, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, OnInit, output, signal, Signal, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ export interface ColumnDef<T> {
   selector: 'app-table',
   imports: [MatTableModule,CommonModule,MatPaginatorModule],
   templateUrl: './table.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './table.component.scss'
 })
 export class TableComponent<T>  {
